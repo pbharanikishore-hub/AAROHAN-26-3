@@ -81,8 +81,8 @@
         /* ==================== HEADER ==================== */
         header {
             display: grid;
-            grid-template-columns: minmax(300px, 1.5fr) auto minmax(150px, 0.8fr);
-            grid-template-areas: "college nav aarohan";
+            grid-template-columns: minmax(300px, 1.5fr) minmax(150px, 0.8fr) auto;
+            grid-template-areas: "college aarohan nav";
             align-items: center;
             gap: 18px;
             padding: 14px 28px;
@@ -126,7 +126,7 @@
         .aarohan-wordmark {
             grid-area: aarohan;
             display: block;
-            justify-self: end;
+            justify-self: start;
             width: min(100%, 300px);
             max-height: 76px;
             object-fit: contain;
@@ -549,13 +549,20 @@
         }
 
         .reg-btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: min(100%, 360px);
+            min-height: 48px;
             background: linear-gradient(45deg, #ffcc00, #ff0055);
             color: #fff;
             padding: 12px 30px;
             border-radius: 25px;
             text-decoration: none;
             font-weight: bold;
+            line-height: 1.35;
+            text-align: center;
+            overflow-wrap: anywhere;
             margin-top: 15px;
             box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
             transition: 0.3s;
@@ -713,12 +720,20 @@
             }
 
             .symposium-highlights {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr);
                 gap: 12px;
             }
 
             .highlight-card {
-                width: 100%;
+                width: auto;
                 min-width: 0;
+                padding: 18px 16px;
+            }
+
+            .highlight-card h3 {
+                font-size: clamp(1.15rem, 5vw, 1.4rem);
+                overflow-wrap: anywhere;
             }
 
             .dept-grid {
