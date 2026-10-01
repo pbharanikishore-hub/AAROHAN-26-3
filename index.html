@@ -80,18 +80,24 @@
 
         /* ==================== HEADER ==================== */
         header {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: minmax(300px, 1.5fr) auto minmax(150px, 0.8fr);
+            grid-template-areas: "college nav aarohan";
             align-items: center;
-            gap: 12px;
+            gap: 18px;
             padding: 14px 28px;
             background: #000;
             border-bottom: 2px solid rgba(255, 204, 0, 0.3);
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
             transition: all 0.3s ease;
+        }
+
+        .header-spacer {
+            width: 100%;
         }
 
         header.scrolled {
@@ -102,74 +108,30 @@
 
         .header-banner {
             display: block;
-            width: min(540px, 54vw);
-            max-height: 120px;
+            grid-area: college;
+            justify-self: start;
+            width: min(100%, 500px);
+            max-height: 100px;
             object-fit: contain;
-            border-radius: 12px;
+            border-radius: 6px;
             background: #000;
             transition: all 0.3s ease;
-            margin-left: 0;
             filter: drop-shadow(0 4px 10px rgba(255, 204, 0, 0.2));
         }
 
         header.scrolled .header-banner {
-            width: min(420px, 38vw);
-            max-height: 90px;
+            max-height: 76px;
         }
 
         .aarohan-wordmark {
-            position: relative;
+            grid-area: aarohan;
+            display: block;
+            justify-self: end;
+            width: min(100%, 300px);
+            max-height: 76px;
+            object-fit: contain;
             background-color: #000;
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 240px;
-            padding: 0 12px;
-            text-transform: uppercase;
-            font-family: 'Barabara', 'Arial Black', Impact, sans-serif;
-            font-weight: 900;
-            letter-spacing: 3px;
-            font-size: clamp(1.8rem, 3vw, 5rem);
-            line-height: 0.9;
-            color: #ffcc00;
-            -webkit-text-stroke: 3px #0a3fa8;
-            text-shadow:
-                -2px -2px 0 #0a3fa8,
-                2px -2px 0 #0a3fa8,
-                -2px 2px 0 #0a3fa8,
-                2px 2px 0 #0a3fa8,
-                0 0 12px rgba(255, 204, 0, 0.8),
-                0 0 25px rgba(255, 153, 0, 0.9),
-                0 8px 0 rgba(255, 140, 0, 0.7);
-            background: linear-gradient(180deg, #ffe066 0%, #ffcc00 18%, #f7a600 52%, #f7b600 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
             filter: drop-shadow(0 0 12px rgba(255, 204, 0, 0.5));
-            animation: shimmer 2.8s ease-in-out infinite alternate;
-            user-select: none;
-        }
-
-        .aarohan-wordmark::before,
-        .aarohan-wordmark::after {
-            content: "✦";
-            position: absolute;
-            font-size: clamp(0.8rem, 1.2vw, 1.5rem);
-            color: #fff7c2;
-            text-shadow: 0 0 10px rgba(255,255,255,0.9), 0 0 16px rgba(255, 204, 0, 0.9);
-            animation: sparkle 1.8s ease-in-out infinite alternate;
-        }
-
-        .aarohan-wordmark::before {
-            left: 8%;
-            top: 18%;
-        }
-
-        .aarohan-wordmark::after {
-            right: 10%;
-            bottom: 18%;
-            animation-delay: 0.8s;
         }
 
         @keyframes shimmer {
@@ -202,25 +164,25 @@
         }
 
         nav {
+            grid-area: nav;
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-left: auto;
+            gap: 8px;
         }
 
         nav button {
             background: linear-gradient(45deg, #ffd54a, #ffcc00);
             border: 2px solid rgba(255, 204, 0, 0.95);
             color: #0b2e8a;
-            padding: 10px 22px;
+            padding: 10px 14px;
             font-weight: 800;
             border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 0 15px rgba(255, 204, 0, 0.3);
-            min-width: 120px;
+            min-width: 96px;
         }
 
         .social-links {
@@ -643,21 +605,21 @@
 
         @media (max-width: 980px) {
             header {
-                flex-wrap: wrap;
-                justify-content: center;
+                grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.9fr);
+                grid-template-areas:
+                    "college aarohan"
+                    "nav nav";
                 padding: 14px 18px;
             }
 
             .header-banner {
-                width: min(100%, 420px);
-                max-height: 90px;
+                width: 100%;
+                max-height: 76px;
             }
 
             .aarohan-wordmark {
-                order: -1;
-                width: min(100%, 220px);
-                min-width: 0;
-                margin: 0 auto;
+                width: 100%;
+                max-height: 64px;
             }
 
             nav {
@@ -668,6 +630,32 @@
             nav button {
                 min-width: 110px;
                 padding: 9px 16px;
+            }
+
+            .page {
+                padding: 36px 5%;
+            }
+
+            .about-container {
+                display: grid;
+                grid-template-columns: minmax(220px, 0.9fr) minmax(0, 1.1fr);
+                gap: 24px;
+                padding: 24px;
+            }
+
+            .about-img-box,
+            .about-text {
+                min-width: 0;
+                width: 100%;
+            }
+
+            .about-img-box {
+                min-height: 280px;
+            }
+
+            .highlight-card {
+                min-width: 180px;
+                padding: 18px 16px;
             }
         }
 
@@ -687,12 +675,12 @@
 
             .header-banner {
                 width: 100%;
-                max-height: 72px;
+                max-height: 62px;
             }
 
             .aarohan-wordmark {
-                width: min(100%, 180px);
-                letter-spacing: 2px;
+                width: 100%;
+                max-height: 48px;
             }
 
             nav {
@@ -700,10 +688,15 @@
             }
 
             nav button {
-                flex: 1 1 calc(50% - 8px);
+                flex: 1 1 0;
                 min-width: 0;
-                padding: 9px 12px;
-                font-size: 0.82rem;
+                padding: 8px 4px;
+                font-size: 0.72rem;
+                white-space: nowrap;
+            }
+
+            header.scrolled .header-banner {
+                max-height: 62px;
             }
 
             .about-container,
@@ -716,6 +709,7 @@
             .about-container {
                 padding: 18px 14px;
                 gap: 16px;
+                grid-template-columns: minmax(0, 1fr);
             }
 
             .symposium-highlights {
@@ -773,13 +767,14 @@
     <!-- Header -->
     <header id="site-header">
         <img src="college-header.png" alt="Fatima Michael College Header Banner" class="header-banner">
-        <img src="aarohan-logo.png" alt="AAROHAN Logo" class="aarohan-wordmark" style="max-width: 420px; width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 0 12px rgba(255, 204, 0, 0.6));">
+        <img src="aarohan-logo.png" alt="AAROHAN Logo" class="aarohan-wordmark">
         <nav>
             <button onclick="triggerShowerAnimation(); navigateTo('home')">Home</button>
             <button onclick="triggerShowerAnimation(); scrollToRegister()">Register</button>
             <button onclick="triggerShowerAnimation(); scrollToDepartments()">Departments</button>
         </nav>
     </header>
+    <div class="header-spacer" id="header-spacer" aria-hidden="true"></div>
 
     <!-- MAIN HOME PAGE -->
     <div id="home" class="page active">
@@ -1086,7 +1081,17 @@
 
         /* Sticky Header Shrink on Scroll */
         const siteHeader = document.getElementById('site-header');
+        const headerSpacer = document.getElementById('header-spacer');
         let scrollUpdatePending = false;
+        function updateHeaderSpacer() {
+            const wasScrolled = siteHeader.classList.contains('scrolled');
+            siteHeader.style.transition = 'none';
+            siteHeader.classList.remove('scrolled');
+            headerSpacer.style.height = `${siteHeader.offsetHeight}px`;
+            if (wasScrolled) siteHeader.classList.add('scrolled');
+            siteHeader.style.transition = '';
+        }
+
         function updateHeaderState() {
             if (scrollUpdatePending) return;
             scrollUpdatePending = true;
@@ -1095,6 +1100,8 @@
                 scrollUpdatePending = false;
             });
         }
+        updateHeaderSpacer();
+        window.addEventListener('resize', updateHeaderSpacer);
         window.addEventListener('scroll', updateHeaderState, { passive: true });
         updateHeaderState();
 
